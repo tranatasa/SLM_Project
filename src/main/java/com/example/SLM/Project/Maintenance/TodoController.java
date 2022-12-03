@@ -9,6 +9,7 @@ public class TodoController {
 
     @GetMapping("/api/message")
     public String ok(){
-        return "Everything works as aspected!";
+        return "Everything works as expected!!";
+
     }
 }
