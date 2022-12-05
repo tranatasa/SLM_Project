@@ -1,10 +1,10 @@
-package fhtw.bic.bic_summenrechner;
+package fhtw.bic.maintenance_monitor;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BicSummenrechnerApplicationTests {
+class BicMaintenanceMonitorApplicationTests {
 
     @Test
     void contextLoads() {

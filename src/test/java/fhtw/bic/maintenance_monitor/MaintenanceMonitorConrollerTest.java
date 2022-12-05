@@ -1,4 +1,4 @@
-package fhtw.bic.bic_summenrechner;
+package fhtw.bic.maintenance_monitor;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -8,10 +8,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.Random;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class SummenrechnerConrollerTest {
+public class MaintenanceMonitorConrollerTest {
     @LocalServerPort
     private int port;
 
@@ -20,14 +25,19 @@ public class SummenrechnerConrollerTest {
 
     @Test
     public void shouldDeliverCorrectResult(){
-        //Arrange
-        int expectedResult=5;
 
-        //Act
-        int actualResult= testRestTemplate.getForObject("http://localhost:" + port + "/api/summenrechner?numberOne=2&numberTwo=3", Integer.class);
+
+        // Generate a random String
+        byte[] array = new byte[7]; // length is bounded by 7
+        new Random().nextBytes(array);
+        String expectedResult = new String(array, StandardCharsets.UTF_8);
+        int actualResult= testRestTemplate.getForObject("http://localhost:" + port + "/setMessage", Integer.class);
+
+
 
         //Assert
-        assertEquals(expectedResult, actualResult);
+        assertTrue(expectedResult.equals(actualResult));
+
     }
 
     @ParameterizedTest

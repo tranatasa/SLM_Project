@@ -1,13 +1,13 @@
-package fhtw.bic.bic_summenrechner;
+package fhtw.bic.maintenance_monitor;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BicSummenrechnerApplication {
+public class MaintenanceMonitorApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BicSummenrechnerApplication.class, args);
+        SpringApplication.run(MaintenanceMonitorApplication.class, args);
     }
 
 }
