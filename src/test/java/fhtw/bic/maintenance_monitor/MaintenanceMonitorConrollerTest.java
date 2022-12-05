@@ -24,35 +24,21 @@ public class MaintenanceMonitorConrollerTest {
     private TestRestTemplate testRestTemplate;
 
     @Test
-    public void shouldDeliverCorrectResult(){
-
-
-        // Generate a random String
-        byte[] array = new byte[7]; // length is bounded by 7
-        new Random().nextBytes(array);
-        String expectedResult = new String(array, StandardCharsets.UTF_8);
-        int actualResult= testRestTemplate.getForObject("http://localhost:" + port + "/setMessage", Integer.class);
-
-
-
-        //Assert
-        assertTrue(expectedResult.equals(actualResult));
+    public void shouldSetCorrectMessage(){
+        String expectedResult = "TestString";
+        testRestTemplate.getForObject("http://localhost:" + port + "/api/setMessage?message="+expectedResult,String.class);
+        String test = testRestTemplate.getForObject("http://localhost:" + port + "/api/getMessage",String.class);
+        assertEquals(expectedResult, test);
 
     }
 
-    @ParameterizedTest
-    @CsvSource({"2,2,4", "-2,8,6","256,1024,1280"})
-    public void SummenrechnerController_shoudReturnCorrectSum_AddIntegers(int numberOne, int numberTwo, long result){
-        //Arrange
-        int firstNumber= numberOne;
-        int secondNUmber= numberTwo;
-        long expectedResult = result;
-
-        //Act
-        int actualResult= testRestTemplate.getForObject("http://localhost:"+port+String.format("/api/summenrechner?numberOne=%s&numberTwo=%s", numberOne,numberTwo), Integer.class);
-
-        //Assert
-        assertEquals(expectedResult,actualResult);
+@Test
+    public void shouldResetMessage(){
+        String standardmsg = "Everything operates as expected";
+        testRestTemplate.getForObject("http://localhost:" + port + "/api/setMessage?message=asdfasdf",String.class);
+        testRestTemplate.getForObject("http://localhost:" + port + "/api/resetMessage",String.class);
+        String actualresult = testRestTemplate.getForObject("http://localhost:" + port + "/api/getMessage",String.class);
+        assertEquals(standardmsg, actualresult);
     }
 
 
