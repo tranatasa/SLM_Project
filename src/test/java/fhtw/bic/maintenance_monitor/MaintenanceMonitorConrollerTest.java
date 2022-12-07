@@ -41,6 +41,11 @@ public class MaintenanceMonitorConrollerTest {
         assertEquals(standardmsg, actualresult);
     }
 
+    @Test public void shouldGetStandardMessage(){
+        String standardmsg = "Everything operates as expected";
+        String actualresult = testRestTemplate.getForObject("http://localhost:" + port + "/api/getMessage",String.class);
+        assertEquals(standardmsg, actualresult);
+    }
 
 
 }
