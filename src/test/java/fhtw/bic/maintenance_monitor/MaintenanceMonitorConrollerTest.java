@@ -26,8 +26,8 @@ public class MaintenanceMonitorConrollerTest {
     @Test
     public void shouldSetCorrectMessage(){
         String expectedResult = "TestString";
-        testRestTemplate.getForObject("http://localhost:" + port + "/api/setMessage?message="+expectedResult,String.class);
-        String test = testRestTemplate.getForObject("http://localhost:" + port + "/api/getMessage",String.class);
+        testRestTemplate.getForObject("http://localhost:" + port + "/api/message/set?m="+expectedResult,String.class);
+        String test = testRestTemplate.getForObject("http://localhost:" + port + "/api/message",String.class);
         assertEquals(expectedResult, test);
 
     }
@@ -35,15 +35,15 @@ public class MaintenanceMonitorConrollerTest {
 @Test
     public void shouldResetMessage(){
         String standardmsg = "Everything operates as expected";
-        testRestTemplate.getForObject("http://localhost:" + port + "/api/setMessage?message=asdfasdf",String.class);
-        testRestTemplate.getForObject("http://localhost:" + port + "/api/resetMessage",String.class);
-        String actualresult = testRestTemplate.getForObject("http://localhost:" + port + "/api/getMessage",String.class);
+        testRestTemplate.getForObject("http://localhost:" + port + "/api/message/set?m=asdfasdf",String.class);
+        testRestTemplate.getForObject("http://localhost:" + port + "/api/message/reset",String.class);
+        String actualresult = testRestTemplate.getForObject("http://localhost:" + port + "/api/message",String.class);
         assertEquals(standardmsg, actualresult);
     }
 
     @Test public void shouldGetStandardMessage(){
         String standardmsg = "Everything operates as expected";
-        String actualresult = testRestTemplate.getForObject("http://localhost:" + port + "/api/getMessage",String.class);
+        String actualresult = testRestTemplate.getForObject("http://localhost:" + port + "/api/message",String.class);
         assertEquals(standardmsg, actualresult);
     }
 
