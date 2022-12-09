@@ -1,12 +1,14 @@
-# SLM_Project
+# Maintenance Monitor Gruppe I
 
-This project illustrates how to easily manage a maintenance mode on Spring boot based APIs
+This project aims to build a simple REST API functionality using the Spring Boot Framework.
 
-It is able to:
+The API shall deliver the currently stored message to monitors/the customer and be set/reset by the service technicians in case of maintenance.
 
-* deliver the message to a client
-* set it to a specific message
-* reset the message
-
-
-## Requirements
+Sample usage:
+```text
+1. /api/message                                               -> "Everything works as expected"
+2. /api/message/set?m=Service+checks:+No+power+until+5:00+pm  -> "ok"
+3. /api/message                                               -> "Service checks: No power until 5:00 pm"
+4. /api/message/reset                                         -> "ok"
+5. /api/message                                               -> "Everything works as expected"
+```
