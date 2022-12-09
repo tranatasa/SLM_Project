@@ -2,7 +2,7 @@ package fhtw.bic.maintenance_monitor;
 
 public class MaintenanceMonitor {
 
-    private String Message = "Everything operates as expected";
+    private String Message = "Everything works as expected";
 
     public String getMessage() {
         return Message;
@@ -13,12 +13,8 @@ public class MaintenanceMonitor {
     }
 
     public void resetMessage(){
-        Message = "Everything operates as expected";
+        Message = "Everything works as expected";
     }
 
-    public MaintenanceMonitor(){};
-
-    public long add(int numberOne, int numberTwo){
-        return numberOne + numberTwo;
-    }
+    public MaintenanceMonitor(){}
 }
