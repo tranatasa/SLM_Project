@@ -8,19 +8,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class MaintenanceMonitorController {
 
     private MaintenanceMonitor maintenanceMonitor = new MaintenanceMonitor();
-    @GetMapping("/api/setMessage")
-    public String setMessage(@RequestParam(name="message")String message){
+    @GetMapping("/api/message/set")
+    public String setMessage(@RequestParam(name="m")String message){
         maintenanceMonitor.setMessage(message);
-        return("Set to message: "+message);
+        return("ok");
     }
 
-    @GetMapping("/api/resetMessage")
+    @GetMapping("/api/message/reset")
     public String resetMessage(){
         maintenanceMonitor.resetMessage();
-        return("Reset message to: 'Everything operates as expected'");
+        return("ok");
     }
 
-    @GetMapping("/api/getMessage")
+    @GetMapping("/api/message")
     public String getMessage(){
         return(maintenanceMonitor.getMessage());
     }
